@@ -182,6 +182,7 @@ typedef struct _TegraRec
 
     Bool dri2_enabled;
     Bool dri3_enabled;
+    Bool present_enabled;
 
     struct drm_tegra *drm;
 
@@ -216,6 +217,9 @@ void TegraDRI2ScreenExit(ScreenPtr pScreen);
 
 Bool TegraDRI3ScreenInit(ScreenPtr pScreen);
 void TegraDRI3ScreenExit(ScreenPtr pScreen);
+
+Bool TegraPresentScreenInit(ScreenPtr pScreen);
+void TegraPresentScreenExit(ScreenPtr pScreen);
 
 Bool TegraVBlankScreenInit(ScreenPtr screen);
 void TegraVBlankScreenExit(ScreenPtr screen);

@@ -54,6 +54,7 @@ opentegra_drv_la_SOURCES = \
 	common_helpers.h \
 	dri2.c \
 	dri3.c \
+	present.c \
 	driver.c \
 	driver.h \
 	drmmode_display.c \

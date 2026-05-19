@@ -608,6 +608,7 @@ TegraCloseScreen(CLOSE_SCREEN_ARGS_DECL)
     drmmode_uevent_fini(pScrn, &tegra->drmmode);
 
     xf86_cursors_fini(pScreen);
+    TegraPresentScreenExit(pScreen);
     TegraDRI3ScreenExit(pScreen);
     TegraDRI2ScreenExit(pScreen);
     TegraVBlankScreenExit(pScreen);
@@ -752,6 +753,7 @@ TegraScreenInit(SCREEN_INIT_ARGS_DECL)
     TegraVBlankScreenInit(pScreen);
     TegraDRI2ScreenInit(pScreen);
     TegraDRI3ScreenInit(pScreen);
+    TegraPresentScreenInit(pScreen);
 
     if (!miCreateDefColormap(pScreen))
         return FALSE;

@@ -135,6 +135,12 @@ AC_CHECK_HEADER([xorg/dri3.h],
 		[#include <xorg-server.h>
 		 #include <X11/Xmd.h>])
 
+AC_CHECK_HEADER([xorg/present.h],
+		[AC_DEFINE(HAVE_PRESENT, 1, [Have xserver Present support])],
+		[],
+		[#include <xorg-server.h>
+		 #include <X11/Xmd.h>])
+
 CPPFLAGS="$SAVE_CPPFLAGS"
 
 DRIVER_NAME=opentegra
