@@ -208,6 +208,7 @@ void TegraXvScreenExit(ScreenPtr pScreen);
 
 Bool TegraEXAScreenInit(ScreenPtr pScreen);
 void TegraEXAScreenExit(ScreenPtr pScreen);
+void TegraEXAThawPixmap(PixmapPtr pixmap);
 
 Bool TegraDRI2ScreenInit(ScreenPtr pScreen);
 void TegraDRI2ScreenExit(ScreenPtr pScreen);

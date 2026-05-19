@@ -251,4 +251,13 @@ void TegraEXAScreenExit(ScreenPtr pScreen)
     }
 }
 
+/*
+ * Wrapper exported so that dri3.c (a separate TU) can force allocation
+ * of a deferred pixmap before exporting its BO as a dma-buf.
+ */
+void TegraEXAThawPixmap(PixmapPtr pixmap)
+{
+    tegra_exa_thaw_pixmap2(pixmap, THAW_ACCEL, THAW_ALLOC);
+}
+
 /* vim: set et sts=4 sw=4 ts=4: */
