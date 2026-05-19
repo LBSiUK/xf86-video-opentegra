@@ -608,6 +608,7 @@ TegraCloseScreen(CLOSE_SCREEN_ARGS_DECL)
     drmmode_uevent_fini(pScrn, &tegra->drmmode);
 
     xf86_cursors_fini(pScreen);
+    TegraDRI3ScreenExit(pScreen);
     TegraDRI2ScreenExit(pScreen);
     TegraVBlankScreenExit(pScreen);
 #ifdef HAVE_DRM_MODE_ATOMIC
@@ -750,6 +751,7 @@ TegraScreenInit(SCREEN_INIT_ARGS_DECL)
 #endif
     TegraVBlankScreenInit(pScreen);
     TegraDRI2ScreenInit(pScreen);
+    TegraDRI3ScreenInit(pScreen);
 
     if (!miCreateDefColormap(pScreen))
         return FALSE;

@@ -181,6 +181,7 @@ typedef struct _TegraRec
     ExaDriverPtr exa_driver;
 
     Bool dri2_enabled;
+    Bool dri3_enabled;
 
     struct drm_tegra *drm;
 
@@ -212,6 +213,9 @@ void TegraEXAThawPixmap(PixmapPtr pixmap);
 
 Bool TegraDRI2ScreenInit(ScreenPtr pScreen);
 void TegraDRI2ScreenExit(ScreenPtr pScreen);
+
+Bool TegraDRI3ScreenInit(ScreenPtr pScreen);
+void TegraDRI3ScreenExit(ScreenPtr pScreen);
 
 Bool TegraVBlankScreenInit(ScreenPtr screen);
 void TegraVBlankScreenExit(ScreenPtr screen);

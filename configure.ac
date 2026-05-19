@@ -129,6 +129,12 @@ AC_CHECK_DECL(drmSyncobjCreate,
 	      [Have drmSyncobjCreate API])], [],
 	      [#include <xf86drm.h>])
 
+AC_CHECK_HEADER([xorg/dri3.h],
+		[AC_DEFINE(HAVE_DRI3, 1, [Have xserver DRI3 support])],
+		[],
+		[#include <xorg-server.h>
+		 #include <X11/Xmd.h>])
+
 CPPFLAGS="$SAVE_CPPFLAGS"
 
 DRIVER_NAME=opentegra
