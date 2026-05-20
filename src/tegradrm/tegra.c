@@ -1020,6 +1020,16 @@ int drm_tegra_bo_from_dmabuf(struct drm_tegra_bo **bop, struct drm_tegra *drm,
 		goto unlock;
 	}
 
+	/*
+	 * Initialise the list heads exactly as drm_tegra_bo_new() and
+	 * drm_tegra_bo_wrap() do — drm_tegra_bo_free() walks mapping_list_v3,
+	 * so an imported bo that reaches the free path (e.g. on an error
+	 * below) would otherwise dereference a NULL list link and crash.
+	 */
+	DRMINITLISTHEAD(&bo->mapping_list_v3);
+	DRMINITLISTHEAD(&bo->push_list);
+	DRMINITLISTHEAD(&bo->bo_list);
+
 	err = drmPrimeFDToHandle(drm->fd, fd, &handle);
 	if (err) {
 		free(bo);
@@ -1036,10 +1046,13 @@ int drm_tegra_bo_from_dmabuf(struct drm_tegra_bo **bop, struct drm_tegra *drm,
 		goto unlock;
 	}
 
+	/*
+	 * lseek() to get the bo size. The kernel's dma_buf_llseek() only
+	 * implements SEEK_END and SEEK_SET — a SEEK_CUR call here fails with
+	 * EINVAL and would make a perfectly good import look broken.
+	 */
 	errno = 0;
-	/* lseek() to get bo size */
 	size = lseek(fd, 0, SEEK_END);
-	lseek(fd, 0, SEEK_CUR);
 	/* store lseek() error number */
 	err = -errno;
 
