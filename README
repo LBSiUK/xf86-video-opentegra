@@ -1,3 +1,15 @@
+NOTE: this is Leon's fork of grate-driver/xf86-video-opentegra, used for
+Surface RT (Tegra 3) graphics bring-up on postmarketOS. His work is on the
+dri3-present branch: DRI3 screen support, Present support (copy mode), Present
+page-flip (check_flip/flip/unflip), and a fix to drm_tegra_bo_from_dmabuf
+(initialise the bo list heads, drop the lseek size probe that dma-bufs reject).
+DRI3 and Present worked on hardware, but this fork is no longer developed: the
+OpenRT project dropped this DDX in favour of the generic modesetting driver with
+glamor and Wayland, and the device now runs modesetting. Tooling and write-up:
+https://github.com/LBSiUK/SurfaceRT-GPU-Driver
+
+----------------------------------------------------------------------------
+
 xf86-video-tegra
 Open-source X.org graphics driver for NVIDIA Tegra
 
